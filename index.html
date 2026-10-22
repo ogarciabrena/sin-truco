@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sin Truco — Lo que comes, sin truco</title>
+<meta name="description" content="Café, pan y salsas con ingredientes que reconoces. Sin azúcar refinada. Sin letras chiquitas. Proyecto piloto en Oaxaca.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf6ee;
+    --cream-2:#f1e9d8;
+    --ink:#2b2420;
+    --ink-soft:#5a4f44;
+    --olive:#5c6b45;
+    --olive-dark:#404b31;
+    --terracotta:#c1663f;
+    --terracotta-dark:#a14f2d;
+    --line:#e1d6bf;
+    --card:#ffffff;
+    --radius:16px;
+    --maxw:1080px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --cream:#201c17;
+      --cream-2:#2a241d;
+      --ink:#f1e9da;
+      --ink-soft:#c9bda7;
+      --olive:#9bb073;
+      --olive-dark:#c3d49c;
+      --terracotta:#e08a5f;
+      --terracotta-dark:#f0ab84;
+      --line:#3a332a;
+      --card:#28231d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --cream:#201c17;
+    --cream-2:#2a241d;
+    --ink:#f1e9da;
+    --ink-soft:#c9bda7;
+    --olive:#9bb073;
+    --olive-dark:#c3d49c;
+    --terracotta:#e08a5f;
+    --terracotta-dark:#f0ab84;
+    --line:#3a332a;
+    --card:#28231d;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.brand{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+  .container{max-width:var(--maxw); margin:0 auto; padding:0 20px;}
+
+  /* Nav */
+  header.site{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--cream) 92%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 20px; max-width:var(--maxw); margin:0 auto;
+  }
+  .brand{font-size:1.3rem; display:flex; align-items:center; gap:8px;}
+  .brand .dot{color:var(--terracotta);}
+  nav .links{display:flex; gap:28px; font-size:0.95rem; font-weight:500;}
+  nav .links a{text-decoration:none; color:var(--ink-soft);}
+  nav .links a:hover{color:var(--terracotta-dark);}
+  .cta-btn{
+    background:var(--terracotta); color:#fff; padding:10px 20px;
+    border-radius:999px; text-decoration:none; font-weight:600; font-size:0.9rem;
+    display:inline-block; transition:background .2s ease;
+    white-space:nowrap;
+  }
+  .cta-btn:hover{background:var(--terracotta-dark);}
+
+  /* Hero */
+  .hero{
+    padding:72px 20px 56px;
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-block; font-size:0.8rem; font-weight:700; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--olive-dark); background:var(--cream-2);
+    border:1px solid var(--line); padding:6px 14px; border-radius:999px; margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 5.5vw, 3.6rem); line-height:1.08; margin:0 0 20px;
+    max-width:760px; margin-inline:auto;
+  }
+  .hero h1 em{color:var(--terracotta); font-style:normal;}
+  .hero p.lead{
+    font-size:1.15rem; color:var(--ink-soft); max-width:600px; margin:0 auto 32px;
+  }
+  .hero-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .btn-outline{
+    border:1.5px solid var(--olive); color:var(--olive-dark); padding:10px 22px;
+    border-radius:999px; text-decoration:none; font-weight:600; font-size:0.95rem;
+  }
+  .btn-outline:hover{background:var(--cream-2);}
+
+  /* Sections */
+  section{padding:64px 20px;}
+  .section-head{max-width:620px; margin:0 auto 40px; text-align:center;}
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{font-size:clamp(1.6rem,3.5vw,2.2rem); margin:0 0 12px;}
+  .section-head p{color:var(--ink-soft); margin:0; font-size:1.02rem;}
+
+  /* Problema */
+  .problema{background:var(--cream-2);}
+  .problema-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:var(--maxw); margin:0 auto;
+  }
+  .problem-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 22px;
+  }
+  .problem-card .num{
+    font-family:'Fraunces',serif; font-size:1.8rem; color:var(--terracotta); margin-bottom:10px; display:block;
+  }
+  .problem-card h3{font-size:1.05rem; margin:0 0 8px;}
+  .problem-card p{font-size:0.92rem; color:var(--ink-soft); margin:0;}
+
+  /* Criterio */
+  .criterio .compare{
+    display:grid; grid-template-columns:1fr auto 1fr; gap:24px; align-items:center;
+    max-width:900px; margin:0 auto 40px;
+  }
+  .compare .vs{
+    font-family:'Fraunces',serif; color:var(--ink-soft); font-size:1rem;
+  }
+  .compare-card{
+    border-radius:var(--radius); padding:26px 24px; border:1px solid var(--line);
+  }
+  .compare-card.bad{background:color-mix(in srgb, var(--terracotta) 8%, var(--card));}
+  .compare-card.good{background:color-mix(in srgb, var(--olive) 10%, var(--card));}
+  .compare-card h3{font-size:1.05rem; margin:0 0 10px; display:flex; align-items:center; gap:8px;}
+  .compare-card ul{margin:0; padding-left:18px; color:var(--ink-soft); font-size:0.93rem;}
+  .compare-card li{margin-bottom:6px;}
+  .tag{font-size:0.7rem; font-weight:700; padding:3px 9px; border-radius:999px; text-transform:uppercase; letter-spacing:.04em;}
+  .tag.bad{background:var(--terracotta); color:#fff;}
+  .tag.good{background:var(--olive); color:#fff;}
+
+  .criterio-note{
+    max-width:680px; margin:0 auto; text-align:center; font-size:0.95rem; color:var(--ink-soft);
+    border-top:1px dashed var(--line); padding-top:24px;
+  }
+
+  /* Ficha */
+  .ficha-demo{
+    max-width:420px; margin:0 auto; background:var(--card); border:1px solid var(--line);
+    border-radius:var(--radius); padding:26px 24px; box-shadow:0 10px 30px -18px rgba(0,0,0,.25);
+  }
+  .ficha-demo .ficha-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px;}
+  .ficha-demo h3{margin:0; font-size:1.15rem;}
+  .ficha-demo .price{color:var(--terracotta); font-weight:700;}
+  .ficha-demo dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 14px; font-size:0.88rem;}
+  .ficha-demo dt{color:var(--ink-soft); font-weight:600;}
+  .ficha-demo dd{margin:0;}
+
+  .valor-wrap{
+    display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:center;
+    max-width:var(--maxw); margin:0 auto;
+  }
+  .valor-text h2{font-size:clamp(1.6rem,3.5vw,2.1rem); margin:0 0 16px;}
+  .valor-text p{color:var(--ink-soft); margin:0 0 14px;}
+  .valor-list{list-style:none; padding:0; margin:20px 0 0;}
+  .valor-list li{
+    display:flex; gap:10px; margin-bottom:10px; font-size:0.95rem; color:var(--ink-soft);
+  }
+  .valor-list li::before{content:"—"; color:var(--olive); font-weight:700; flex-shrink:0;}
+
+  /* Catálogo */
+  .catalogo{background:var(--cream-2);}
+  .cat-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:18px; max-width:var(--maxw); margin:0 auto;
+  }
+  .cat-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px 18px; text-align:left;
+  }
+  .cat-card .icon{
+    width:40px; height:40px; border-radius:10px; background:var(--cream-2);
+    display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:14px;
+  }
+  .cat-card h3{font-size:1rem; margin:0 0 6px;}
+  .cat-card p{font-size:0.86rem; color:var(--ink-soft); margin:0 0 10px;}
+  .cat-card .chip{
+    font-size:0.72rem; color:var(--olive-dark); background:color-mix(in srgb, var(--olive) 14%, var(--card));
+    padding:3px 9px; border-radius:999px; font-weight:600;
+  }
+
+  /* Piloto */
+  .piloto-steps{
+    max-width:720px; margin:0 auto; counter-reset:step;
+  }
+  .step{
+    display:grid; grid-template-columns:44px 1fr; gap:18px; padding:20px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .step:last-child{border-bottom:none;}
+  .step .num-circle{
+    width:40px; height:40px; border-radius:50%; background:var(--olive); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Fraunces',serif;
+  }
+  .step h3{margin:0 0 6px; font-size:1.02rem;}
+  .step p{margin:0; color:var(--ink-soft); font-size:0.93rem;}
+
+  /* Legal */
+  .legal{
+    background:var(--cream-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .legal .wrap{max-width:760px;}
+  .legal h2{font-size:1.2rem; margin:0 0 14px;}
+  .legal p, .legal li{font-size:0.88rem; color:var(--ink-soft);}
+  .legal ul{padding-left:20px;}
+
+  /* CTA / Footer */
+  .cta-final{text-align:center;}
+  .cta-final h2{font-size:clamp(1.6rem,3.8vw,2.2rem); margin:0 0 14px;}
+  .cta-final p{color:var(--ink-soft); max-width:520px; margin:0 auto 28px;}
+
+  footer{
+    padding:40px 20px; text-align:center; border-top:1px solid var(--line);
+  }
+  footer p{color:var(--ink-soft); font-size:0.85rem; margin:4px 0;}
+  footer a{color:var(--olive-dark); text-decoration:none; font-weight:600;}
+
+  @media (max-width: 860px){
+    .problema-grid{grid-template-columns:1fr;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .compare{grid-template-columns:1fr; }
+    .compare .vs{display:none;}
+    .valor-wrap{grid-template-columns:1fr;}
+    nav .links{display:none;}
+  }
+  @media (max-width: 480px){
+    .cat-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav>
+    <div class="brand">Sin<span class="dot">·</span>Truco</div>
+    <div class="links">
+      <a href="#criterio">El criterio</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#piloto">El piloto</a>
+    </div>
+    <a class="cta-btn" href="mailto:ogarciabrena@gmail.com?subject=Sin%20Truco">Escríbenos</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <span class="eyebrow">Proyecto piloto · Oaxaca</span>
+  <h1>Lo que comes, <em>sin truco</em>.</h1>
+  <p class="lead">Café, pan y salsas hechos con ingredientes que reconoces. Sin azúcar refinada añadida. Sin letras chiquitas que escondan lo que de verdad llevas a la boca.</p>
+  <div class="hero-actions">
+    <a class="cta-btn" href="#catalogo">Ver el catálogo</a>
+    <a class="btn-outline" href="#criterio">Entender el criterio</a>
+  </div>
+</section>
+
+<section class="problema">
+  <div class="section-head">
+    <span class="eyebrow">El problema</span>
+    <h2>Comer bien no debería ser un acto de fe</h2>
+    <p>Hoy la mayoría de lo que se vende como comida está hecho para durar y venderse, no para alimentar.</p>
+  </div>
+  <div class="problema-grid">
+    <div class="problem-card">
+      <span class="num">01</span>
+      <h3>Procesos que quitan y añaden</h3>
+      <p>A muchos alimentos se les retira la fibra y se les añade azúcar, grasa o aditivos para que sepan "mejor" y duren más.</p>
+    </div>
+    <div class="problem-card">
+      <span class="num">02</span>
+      <h3>"Premium" sin explicar nada</h3>
+      <p>Hay restaurantes y tiendas que cobran más por sus productos sin decir qué ingredientes usan ni cómo se hicieron.</p>
+    </div>
+    <div class="problem-card">
+      <span class="num">03</span>
+      <h3>Nadie tiene tiempo de ser nutriólogo</h3>
+      <p>No hace falta estudiar nutrición para merecer un criterio simple y honesto al momento de elegir qué comer.</p>
+    </div>
+  </div>
+</section>
+
+<section class="criterio" id="criterio">
+  <div class="section-head">
+    <span class="eyebrow">El criterio</span>
+    <h2>No es "orgánico". Es poco procesado.</h2>
+    <p>"Orgánico" habla de cómo se cultivó un alimento. Nuestro criterio habla de otra cosa: cuánto se transformó antes de llegar a tu plato.</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-card bad">
+      <h3><span class="tag bad">Más procesado</span></h3>
+      <ul>
+        <li>Jugo empacado de larga vida</li>
+        <li>Pan de bolsa con lista larga de aditivos</li>
+        <li>Mezclas industrializadas de café o cacao</li>
+      </ul>
+    </div>
+    <div class="vs">vs.</div>
+    <div class="compare-card good">
+      <h3><span class="tag good">Poco procesado</span></h3>
+      <ul>
+        <li>Fruta exprimida en el momento</li>
+        <li>Pan de masa madre con ingredientes que reconoces</li>
+        <li>Café y cacao de productor local, sin mezclas</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="criterio-note">Nos apoyamos en la lógica de clasificación NOVA, que ordena los alimentos según su nivel de procesamiento industrial. Los ultraprocesados se han asociado en distintos estudios con peores resultados de salud — por eso elegimos evitarlos, no porque lo "natural" sea mágico.</p>
+</section>
+
+<section class="valor">
+  <div class="valor-wrap">
+    <div class="valor-text">
+      <span class="eyebrow">Propuesta de valor</span>
+      <h2>Transparencia, no una etiqueta bonita</h2>
+      <p>Cada producto tiene una ficha: de dónde viene, qué ingredientes lleva y cómo se preparó. No te decimos "es sano", te decimos exactamente qué hicimos.</p>
+      <ul class="valor-list">
+        <li>Ingredientes completos, sin letras chiquitas</li>
+        <li>Origen del insumo y del productor</li>
+        <li>Cómo se procesa, se maneja y se conserva</li>
+      </ul>
+    </div>
+    <div class="ficha-demo">
+      <div class="ficha-head">
+        <h3>Pan de masa madre integral</h3>
+        <span class="price">$65</span>
+      </div>
+      <dl>
+        <dt>Ingredientes</dt><dd>Harina integral, agua, masa madre, sal</dd>
+        <dt>Origen</dt><dd>Molino local, Oaxaca</dd>
+        <dt>Azúcar añadida</dt><dd>No</dd>
+        <dt>Proceso</dt><dd>Fermentación de 18h, horneado diario</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="catalogo" id="catalogo">
+  <div class="section-head">
+    <span class="eyebrow">Oferta inicial</span>
+    <h2>Lo que vamos a meter a prueba primero</h2>
+    <p>Un catálogo corto, de bajo riesgo, para validar antes de crecer.</p>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <div class="icon">☕</div>
+      <h3>Café &amp; cacao</h3>
+      <p>De productor local en Oaxaca, sin mezclas industrializadas ni azúcar refinada.</p>
+      <span class="chip">Sin azúcar añadida</span>
+    </div>
+    <div class="cat-card">
+      <div class="icon">🍞</div>
+      <h3>Pan integral</h3>
+      <p>Masa madre o integral artesanal, con ingredientes que puedes nombrar todos.</p>
+      <span class="chip">Ingredientes reconocibles</span>
+    </div>
+    <div class="cat-card">
+      <div class="icon">🌿</div>
+      <h3>Salsas artesanales</h3>
+      <p>Hechas en lotes pequeños, sin conservadores industriales ni rellenos.</p>
+      <span class="chip">Poco procesado</span>
+    </div>
+    <div class="cat-card">
+      <div class="icon">🌾</div>
+      <h3>Snacks &amp; kits</h3>
+      <p>Semillas, fibra y proteína para un desayuno rápido sin ultraprocesados.</p>
+      <span class="chip">Fibra real</span>
+    </div>
+  </div>
+</section>
+
+<section class="piloto" id="piloto">
+  <div class="section-head">
+    <span class="eyebrow">Cómo empieza</span>
+    <h2>Un piloto antes que un negocio</h2>
+    <p>Preferimos probar barato y rápido antes de montar algo grande.</p>
+  </div>
+  <div class="piloto-steps">
+    <div class="step">
+      <div class="num-circle">1</div>
+      <div>
+        <h3>Meter 2–3 productos a una lonchería existente</h3>
+        <p>Un pan integral, una salsa artesanal y un café de productor local, lado a lado con el menú de siempre.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num-circle">2</div>
+      <div>
+        <h3>Medir, no suponer</h3>
+        <p>Ventas reales, qué tanto la gente está dispuesta a pagar de más, y qué preguntas hace sobre el producto.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num-circle">3</div>
+      <div>
+        <h3>Probar esta misma página</h3>
+        <p>Ver si el catálogo y las fichas de producto generan interés real antes de invertir en más.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num-circle">4</div>
+      <div>
+        <h3>Escalar sólo si funciona</h3>
+        <p>Más proveedores locales, empaque y etiquetado conforme a norma — recién entonces.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="legal">
+  <div class="wrap">
+    <h2>Un aviso honesto</h2>
+    <ul>
+      <li>No usamos la palabra "orgánico": en México ese término está regulado y requiere certificación oficial que no tenemos.</li>
+      <li>No decimos que esto cura o previene enfermedades, ni que siempre es "más sano" — la diferencia nutricional real suele ser más chica de lo que se vende.</li>
+      <li>Esto es una recomendación de criterio, no una asesoría de nutriólogo.</li>
+      <li>Preferimos ser específicos: "sin azúcar refinada añadida", "ingredientes que reconoces", "poco procesado" — en vez de etiquetas vacías.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="cta-final">
+  <h2>¿Te late la idea?</h2>
+  <p>Estamos validando esto en Oaxaca. Si tienes una lonchería, eres productor local, o simplemente quieres opinar del concepto, escríbenos.</p>
+  <a class="cta-btn" href="mailto:ogarciabrena@gmail.com?subject=Sin%20Truco">ogarciabrena@gmail.com</a>
+</section>
+
+<footer>
+  <p>Sin Truco — un proyecto en borrador, sin validar todavía.</p>
+  <p>Oaxaca, México · 2026</p>
+</footer>
+
+</body>
+</html>
